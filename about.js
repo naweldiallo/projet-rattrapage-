@@ -25,7 +25,7 @@ function animateOnScroll() {
     });
 }
 
-// Animation des statistiques
+
 function animateStats() {
     const stats = document.querySelectorAll('.stat h3');
     const observer = new IntersectionObserver((entries) => {
