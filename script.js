@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const sampleProducts = [
     { nom: 'Téléphone Android', prix: 95000 },
     { nom: 'Casque Bluetooth', prix: 23000 },
@@ -134,7 +133,6 @@ if (document.readyState === 'loading') {
 } else {
     initApp();
 }
-=======
 function ajouterAuPanier(nom,prix) {
     let panier = JSON.parse(localStorage.getItem("panier")) || [];
     panier.push({ nom, prix });
@@ -169,4 +167,3 @@ function validerCommande(e){
     alert("Commande validée !");
     window.location.href="index.html";
 }
->>>>>>> a9f53c133c12448008e6c294e69fbaca9d695454
