@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Produits - ShopZone</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">🛒 ShopZone</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="products.html">Produits</a></li>
+      <li><a href="cart.html">Panier <span id="cartCount" class="badge">0</span></a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="products-section">
+    <h2>Tous nos produits</h2>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Rechercher un produit..." oninput="searchProducts()"/>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterProducts('all', this)">Tous</button>
+      <button class="filter-btn" onclick="filterProducts('electronique', this)">Électronique</button>
+      <button class="filter-btn" onclick="filterProducts('vetements', this)">Vêtements</button>
+      <button class="filter-btn" onclick="filterProducts('maison', this)">Maison</button>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
