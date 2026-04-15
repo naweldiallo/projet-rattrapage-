@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier | SmartMarket</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🛒 Mon Panier</h1>
+    <nav><a href="index.html">⬅ Continuer mes achats</a></nav>
+</header>
+
+<div class="panier-container">
+    <div id="liste-panier">
+        </div>
+
+    <div id="recapitulatif" style="margin-top: 20px; text-align: right;">
+        <h2 id="total-prix">Total : 0 FCFA</h2>
+        <button class="btn-whatsapp" onclick="commanderWhatsApp()">Finaliser sur WhatsApp 💬</button>
+        <button class="btn-vider" onclick="viderPanier()">Vider le panier</button>
+    </div>
+</div>
+
+<script>
+    function chargerPanier() {
+        let panier = JSON.parse(localStorage.getItem("panier")) || [];
+        let listeDiv = document.getElementById("liste-panier");
+        let totalElement = document.getElementById("total-prix");
+        let total = 0;
+
+        if (panier.length === 0) {
+            listeDiv.innerHTML = "<p style='text-align:center'>Votre panier est vide.</p>";
+            return;
+        }
+
+        listeDiv.innerHTML = "";
+        panier.forEach((item, index) => {
+            total += item.prix;
+            listeDiv.innerHTML += `
+                <div class="item-panier">
+                    <span>${item.nom}</span>
+                    <strong>${item.prix.toLocaleString()} FCFA</strong>
+                </div>`;
+        });
+
+        totalElement.innerText = "Total : " + total.toLocaleString() + " FCFA";
+    }
+
+    function viderPanier() {
+        if(confirm("Vider tout le panier ?")) {
+            localStorage.removeItem("panier");
+            location.reload();
+        }
+    }
+
+    function commanderWhatsApp() {
+        let panier = JSON.parse(localStorage.getItem("panier")) || [];
+        if (panier.length === 0) return alert("Votre panier est vide !");
+
+        let message = "Bonjour SmartMarket ! 👋 %0AJe souhaite commander :%0A";
+        let total = 0;
+        
+        panier.forEach(item => {
+            message += `- ${item.nom} (${item.prix} FCFA)%0A`;
+            total += item.prix;
+        });
+
+        message += `%0A*Total : ${total} FCFA*`;
+        
+        // Remplace 237600000000 par ton numéro réel
+        window.open(`https://wa.me/237600000000?text=${message}`, '_blank');
+    }
+
+    window.onload = chargerPanier;
+</script>
+
+</body>
+</html>
