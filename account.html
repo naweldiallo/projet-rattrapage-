@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mon compte SmartMarket - Connexion et création de compte">
+    <title>Mon compte - SmartMarket</title>
+    <link rel="stylesheet" href="account.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">SmartMarket</a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="account.html" class="active">Mon compte</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <!-- Section Connexion -->
+            <section class="auth-section" id="login-section">
+                <div class="auth-card">
+                    <h2>Se connecter</h2>
+                    <form id="login-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Mot de passe</label>
+                            <input type="password" id="login-password" name="password" required>
+                        </div>
+                        <button type="submit" class="auth-button">Se connecter</button>
+                    </form>
+                    <p class="auth-switch">
+                        Pas encore de compte ?
+                        <a href="#" id="show-register">Créer un compte</a>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section Inscription -->
+            <section class="auth-section hidden" id="register-section">
+                <div class="auth-card">
+                    <h2>Créer un compte</h2>
+                    <form id="register-form" class="auth-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="register-firstname">Prénom</label>
+                                <input type="text" id="register-firstname" name="firstname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-lastname">Nom</label>
+                                <input type="text" id="register-lastname" name="lastname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-phone">Téléphone</label>
+                            <input type="tel" id="register-phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Mot de passe</label>
+                            <input type="password" id="register-password" name="password" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm-password">Confirmer le mot de passe</label>
+                            <input type="password" id="register-confirm-password" name="confirmPassword" required>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="terms" required>
+                                <span class="checkmark"></span>
+                                J'accepte les <a href="#" target="_blank">conditions générales</a>
+                            </label>
+                        </div>
+                        <button type="submit" class="auth-button">Créer mon compte</button>
+                    </form>
+                    <p class="auth-switch">
+                        Déjà un compte ?
+                        <a href="#" id="show-login">Se connecter</a>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section Profil (après connexion) -->
+            <section class="auth-section hidden" id="profile-section">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">👤</div>
+                        <div class="profile-info">
+                            <h2 id="user-name">Bienvenue</h2>
+                            <p id="user-email"></p>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="profile-button" onclick="showOrderHistory()">
+                            📦 Historique des commandes
+                        </button>
+                        <button class="profile-button" onclick="showAccountSettings()">
+                            ⚙️ Paramètres du compte
+                        </button>
+                        <button class="profile-button logout" onclick="logout()">
+                            🚪 Se déconnecter
+                        </button>
+                    </div>
+
+                    <div id="order-history" class="order-history hidden">
+                        <h3>Mes commandes</h3>
+                        <div id="orders-list">
+                            <p class="no-orders">Aucune commande trouvée</p>
+                        </div>
+                    </div>
+
+                    <div id="account-settings" class="account-settings hidden">
+                        <h3>Paramètres du compte</h3>
+                        <form id="settings-form" class="settings-form">
+                            <div class="form-group">
+                                <label for="settings-firstname">Prénom</label>
+                                <input type="text" id="settings-firstname" name="firstname">
+                            </div>
+                            <div class="form-group">
+                                <label for="settings-lastname">Nom</label>
+                                <input type="text" id="settings-lastname" name="lastname">
+                            </div>
+                            <div class="form-group">
+                                <label for="settings-phone">Téléphone</label>
+                                <input type="tel" id="settings-phone" name="phone">
+                            </div>
+                            <button type="submit" class="auth-button">Sauvegarder</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SmartMarket. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="account.js"></script>
+</body>
+</html>

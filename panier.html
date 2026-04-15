@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Panier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>🛒 Mon Panier</h1>
+    <nav><a href="index.html">⬅ Boutique</a></nav>
+</header>
+<div style="max-width:600px; margin:40px auto; background:white; padding:20px; border-radius:15px; color:#333;">
+    <div id="liste"></div>
+    <h2 id="total-f" style="text-align:right;">Total : 0 FCFA</h2>
+    <button onclick="commander()" style="background:#25D366; color:white; border:none; padding:15px; width:100%; border-radius:10px; font-weight:bold; cursor:pointer;">Commander sur WhatsApp 💬</button>
+</div>
+
+<script>
+function charger() {
+    let panier = JSON.parse(localStorage.getItem("panier")) || [];
+    let div = document.getElementById("liste");
+    let total = 0;
+    if(panier.length === 0) { div.innerHTML = "Votre panier est vide."; return; }
+    panier.forEach(i => {
+        total += i.prix;
+        div.innerHTML += `<p style="display:flex; justify-content:space-between;"><span>${i.nom}</span> <strong>${i.prix.toLocaleString()} FCFA</strong></p>`;
+    });
+    document.getElementById("total-f").innerText = "Total : " + total.toLocaleString() + " FCFA";
+}
+
+function commander() {
+    let panier = JSON.parse(localStorage.getItem("panier")) || [];
+    if(panier.length === 0) return;
+    let msg = "Bonjour, je souhaite commander : %0A";
+    panier.forEach(i => msg += `- ${i.nom} (${i.prix} FCFA)%0A`);
+    window.open(`https://wa.me/237600000000?text=${msg}`, '_blank'); // CHANGE LE NUMÉRO ICI
+}
+window.onload = charger;
+</script>
+</body>
+</html>

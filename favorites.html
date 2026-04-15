@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mes favoris - SmartMarket">
+    <title>Mes Favoris - SmartMarket</title>
+    <link rel="stylesheet" href="favorites.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">SmartMarket</a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="products.html">Produits</a></li>
+                    <li><a href="favorites.html" class="active">Favoris</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="account.html">Mon compte</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="favorites-header">
+            <h1>❤️ Mes Favoris</h1>
+            <p>Découvrez vos produits préférés sauvegardés</p>
+        </div>
+
+        <div class="favorites-stats">
+            <div class="stat-card">
+                <span class="stat-number" id="favoritesCount">0</span>
+                <span class="stat-label">Produits favoris</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="totalValue">0</span>
+                <span class="stat-label">Valeur totale</span>
+            </div>
+        </div>
+
+        <div class="favorites-content">
+            <div id="favoritesGrid" class="favorites-grid">
+                <div class="empty-state">
+                    <div class="empty-icon">❤️</div>
+                    <h3>Aucun favori pour le moment</h3>
+                    <p>Parcourez notre catalogue et ajoutez des produits à vos favoris !</p>
+                    <a href="products.html" class="cta-button">Découvrir les produits</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="favorites-actions">
+            <button id="addAllToCart" class="action-button primary">Ajouter tous au panier</button>
+            <button id="clearAll" class="action-button secondary">Vider les favoris</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SmartMarket. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="favorites.js"></script>
+</body>
+</html>
