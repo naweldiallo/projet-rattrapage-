@@ -1,8 +1,6 @@
-// ===== SHOPZONE - MODULE BASE DE DONNÉES LOCAL =====
-
 const DB = {
 
-  // === PRODUITS ===
+  //PRODUITS
   getProducts() {
     return JSON.parse(localStorage.getItem('sz_products')) || [];
   },
@@ -26,7 +24,7 @@ const DB = {
     this.saveProducts(products);
   },
 
-  // === COMMANDES ===
+  // COMMANDES 
   getOrders() {
     return JSON.parse(localStorage.getItem('sz_orders')) || [];
   },
@@ -48,7 +46,7 @@ const DB = {
     localStorage.setItem('sz_orders', JSON.stringify(orders));
   },
 
-  // === UTILISATEURS ===
+  // UTILISATEURS
   getUsers() {
     return JSON.parse(localStorage.getItem('sz_users')) || [];
   },
@@ -77,7 +75,7 @@ const DB = {
     sessionStorage.removeItem('sz_current_user');
   },
 
-  // === STATS (pour tableau de bord admin) ===
+  // tableau de bord admin 
   getStats() {
     const orders = this.getOrders();
     const users = this.getUsers();
@@ -90,7 +88,7 @@ const DB = {
     };
   },
 
-  // === RESET (dev only) ===
+  //RESET 
   clearAll() {
     ['sz_products','sz_orders','sz_users'].forEach(k => localStorage.removeItem(k));
     console.log('Base de données réinitialisée.');
