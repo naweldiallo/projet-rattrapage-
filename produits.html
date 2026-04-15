@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panier - ShopZone</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">🛒 ShopZone</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="products.html">Produits</a></li>
+      <li><a href="cart.html">Panier <span id="cartCount" class="badge">0</span></a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <section class="cart-section">
+    <h2>Mon Panier</h2>
+    <div id="cartItems"></div>
+    <div id="cartSummary"></div>
+  </section>
+  <script src="app.js"></script>
+  <script src="cart.js"></script>
+</body>
+</html>
