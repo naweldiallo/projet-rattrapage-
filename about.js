@@ -1,6 +1,6 @@
 
 
-// Animation au scroll pour les cartes de valeurs
+
 function animateOnScroll() {
     const observerOptions = {
         threshold: 0.1,
