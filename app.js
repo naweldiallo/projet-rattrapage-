@@ -1,16 +1,15 @@
-// ===== DONNÉES PRODUITS =====
 const products = [
   { id: 1, name: "Smartphone Pro Max", price: 200000, category: "electronique", emoji: "📱", stars: 5, stock: 10 },
-  { id: 2, name: "Casque Bluetooth", price: 8000,  category: "electronique", emoji: "🎧", stars: 4, stock: 5 },
-  { id: 3, name: "Laptop Ultra Slim", price: 400000, category: "electronique", emoji: "💻", stars: 5, stock: 3 },
-  { id: 4, name: "T-Shirt Premium",   price: 10000,  category: "vetements",   emoji: "👕", stars: 4, stock: 20 },
+  { id: 2, name: "Casque Bluetooth", price: 8000,  category: "electronique", emoji: "🎧", stars: 4, stock: 25 },
+  { id: 3, name: "Laptop Ultra Slim", price: 400000, category: "electronique", emoji: "💻", stars: 5, stock: 5 },
+  { id: 4, name: "T-Shirt Premium",   price: 10000,  category: "vetements",   emoji: "👕", stars: 4, stock: 30 },
   { id: 5, name: "Sneakers Trendy",   price: 45000,  category: "vetements",   emoji: "👟", stars: 4, stock: 8 },
-  { id: 6, name: "Veste en Jean",     price: 10000,  category: "vetements",   emoji: "🧥", stars: 3, stock: 6 },
+  { id: 6, name: "Veste en Jean",     price: 10000,  category: "vetements",   emoji: "🧥", stars: 3, stock: 10 },
   { id: 7, name: "Lampe LED Bureau",  price: 20000,  category: "maison",      emoji: "💡", stars: 4, stock: 15 },
-  { id: 8, name: "Tapis Décoratif",   price: 80000,  category: "maison",      emoji: "🪞", stars: 3, stock: 4 },
+  { id: 8, name: "Tapis Décoratif",   price: 80000,  category: "maison",      emoji: "🪞", stars: 3, stock: 5 },
 ];
 
-// ===== PANIER (LocalStorage) =====
+//  PANIER
 function getCart() {
   return JSON.parse(localStorage.getItem('shopzone_cart')) || [];
 }
@@ -32,14 +31,14 @@ function addToCart(id) {
   showToast(`✅ ${product.name} ajouté au panier !`);
 }
 
-// ===== COMPTEUR PANIER =====
+//COMPTEUR PANIER
 function updateCartCount() {
   const cart = getCart();
   const total = cart.reduce((sum, i) => sum + i.qty, 0);
   document.querySelectorAll('#cartCount').forEach(el => el.textContent = total);
 }
 
-// ===== TOAST NOTIFICATION =====
+// NOTIFICATION 
 function showToast(msg) {
   const toast = document.createElement('div');
   toast.textContent = msg;
@@ -53,7 +52,7 @@ function showToast(msg) {
   setTimeout(() => toast.remove(), 3000);
 }
 
-// ===== RENDU CARTE PRODUIT =====
+// RENDU CARTE PRODUIT 
 function createCard(p) {
   const stars = '⭐'.repeat(p.stars);
   return `
@@ -70,7 +69,7 @@ function createCard(p) {
   `;
 }
 
-// ===== AFFICHAGE PRODUITS =====
+// AFFICHAGE PRODUITS
 function renderProducts(data, containerId = 'productsGrid') {
   const grid = document.getElementById(containerId);
   if (!grid) return;
@@ -79,7 +78,6 @@ function renderProducts(data, containerId = 'productsGrid') {
     : '<p style="text-align:center;color:#aaa;grid-column:1/-1">Aucun produit trouvé.</p>';
 }
 
-// ===== FILTRAGE =====
 function filterProducts(cat, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
@@ -87,19 +85,19 @@ function filterProducts(cat, btn) {
   renderProducts(filtered);
 }
 
-// ===== RECHERCHE =====
+// RECHERCHE
 function searchProducts() {
   const query = document.getElementById('searchInput')?.value.toLowerCase();
   const filtered = products.filter(p => p.name.toLowerCase().includes(query));
   renderProducts(filtered);
 }
 
-// ===== MENU HAMBURGER =====
+// MENU HAMBURGER
 document.getElementById('hamburger')?.addEventListener('click', () => {
   document.getElementById('navLinks')?.classList.toggle('active');
 });
 
-// ===== INIT =====
+//INIT 
 document.addEventListener('DOMContentLoaded', () => {
   updateCartCount();
   if (document.getElementById('featuredGrid')) {
