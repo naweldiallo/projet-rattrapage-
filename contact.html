@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - ShopZone</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">🛒 ShopZone</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="products.html">Produits</a></li>
+      <li><a href="cart.html">Panier</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <section class="contact-section">
+    <h2>Contactez-nous</h2>
+    <form id="contactForm">
+      <div class="form-group">
+        <label>Nom complet</label>
+        <input type="text" id="name" placeholder="Votre nom" required/>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="votre@email.com" required/>
+      </div>
+      <div class="form-group">
+        <label>Sujet</label>
+        <select id="subject">
+          <option>Commande</option>
+          <option>Livraison</option>
+          <option>Retour produit</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="message" rows="5" placeholder="Votre message..." required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Envoyer</button>
+      <p id="successMsg" style="display:none; color:green; margin-top:1rem;">✅ Message envoyé !</p>
+    </form>
+  </section>
+  <script src="contact.js"></script>
+</body>
+</html>
