@@ -1,4 +1,4 @@
-// === GESTION DES COMPTES UTILISATEURS ===
+
 
 class AuthManager {
     constructor() {
