@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopZone - Boutique en ligne</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">🛒 ShopZone</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="products.html">Produits</a></li>
+      <li><a href="cart.html">Panier <span id="cartCount" class="badge">0</span></a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">☰</div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Bienvenue sur <span>ShopZone</span></h1>
+      <p>Les meilleures offres du Cameroun, livrées chez vous.</p>
+      <a href="products.html" class="btn-hero">Voir les produits</a>
+    </div>
+  </header>
+
+  <!-- CATEGORIES -->
+  <section class="categories">
+    <h2>Nos Catégories</h2>
+    <div class="cat-grid">
+      <div class="cat-card">📱 Électronique</div>
+      <div class="cat-card">👕 Vêtements</div>
+      <div class="cat-card">🏠 Maison</div>
+      <div class="cat-card">💄 Beauté</div>
+    </div>
+  </section>
+
+  <!-- PRODUITS VEDETTES -->
+  <section class="featured">
+    <h2>Produits Vedettes</h2>
+    <div class="products-grid" id="featuredGrid"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h3>🛒 ShopZone</h3>
+        <p>Votre boutique de confiance au Cameroun.</p>
+      </div>
+      <div>
+        <h4>Liens</h4>
+        <a href="index.html">Accueil</a>
+        <a href="products.html">Produits</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>📍 Yaoundé, Cameroun</p>
+        <p>📞 +237 6XX XXX XXX</p>
+        <p>✉️ contact@shopzone.cm</p>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2025 ShopZone. Tous droits réservés.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
