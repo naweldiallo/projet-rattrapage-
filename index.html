@@ -2,63 +2,16 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>SmartMarket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SmartMarket - La meilleure boutique en ligne au Cameroun">
+    <title>SmartMarket - Boutique en ligne Cameroun</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<header>
-    <h1>🛒 SmartMarket</h1>
-    <nav>
-        <a href="#">Accueil</a>
-        <a href="panier.html">Panier</a>
-    </nav>
-</header>
-
-<section class="hero">
-    <h2>Bienvenue sur SmartMarket</h2>
-    <p>La meilleure boutique en ligne au Cameroun 🇨🇲</p>
-</section>
-
-<h2 class="titre">Nos Produits</h2>
-
-<div class="produits">
-
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
-        <h3>iPhone 11</h3>
-        <p>250 000 FCFA</p>
-        <button>Ajouter au panier</button>
-    </div>
-
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba8">
-        <h3>Nike Air</h3>
-        <p>45 000 FCFA</p>
-        <button>Ajouter au panier</button>
-    </div>
-
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
-        <h3>Casque Bluetooth</h3>
-        <p>15 000 FCFA</p>
-        <button>Ajouter au panier</button>
-    </div>
-
-</div>
-
-<script>
-function ajouterAuPanier(nom, prix) {
-
-    let panier = JSON.parse(localStorage.getItem("panier")) || [];
-
-    panier.push({ nom: nom, prix: prix });
-
-    localStorage.setItem("panier", JSON.stringify(panier));
-
-    alert(nom + " ajouté au panier !");
-}
-</script>
+    <header>
+        <h1>Bienvenue sur SmartMarket</h1>
+        <p>La meilleure boutique en ligne au Cameroun</p>
+    </header>
+    <script src="script.js" defer></script>
 </body>
 </html>
