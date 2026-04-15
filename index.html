@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SmartMarket - La meilleure boutique en ligne au Cameroun">
+    <title>SmartMarket - Boutique en ligne Cameroun</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">SmartMarket</a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Accueil</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="account.html">Mon compte</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Bienvenue sur SmartMarket</h1>
+                <p>La meilleure boutique en ligne au Cameroun</p>
+            </div>
+        </section>
+
+        <section class="catalogue">
+            <div class="container">
+                <h2>Produits</h2>
+                <div id="products" class="product-grid"></div>
+            </div>
+        </section>
+
+        <section class="cart-section">
+            <div class="container">
+                <h2>Panier</h2>
+                <div id="panier"></div>
+                <p id="total" class="total">Total: 0 FCFA</p>
+                <button id="checkoutBtn">Valider la commande</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SmartMarket. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="db.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>

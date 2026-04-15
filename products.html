@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catalogue de produits SmartMarket - 20 articles disponibles">
+    <title>Catalogue Produits - SmartMarket</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin: -20px -20px 30px -20px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header de la page */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .page-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        /* Barre de filtres */
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #e1e1e1;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .search-box {
+            flex: 1;
+            padding: 10px 20px;
+            border: 2px solid #e1e1e1;
+            border-radius: 20px;
+            font-size: 1em;
+            min-width: 200px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Grille de produits */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* Carte de produit */
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: white;
+            font-weight: bold;
+            object-fit: cover;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-category {
+            color: #667eea;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            flex: 1;
+        }
+
+        .product-price {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .product-rating {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .star {
+            color: #ffc107;
+        }
+
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .add-to-cart-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+            }
+
+            .nav-menu {
+                margin-top: 20px;
+                gap: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 1.8em;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 15px;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .search-box {
+                min-width: auto;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">SmartMarket</a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="products.html" class="active">Produits</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="account.html">Mon compte</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>Notre Catalogue</h1>
+            <p>Découvrez nos 20 meilleurs produits sélectionnés pour vous</p>
+        </div>
+
+        <div class="filters">
+            <input type="text" id="searchBox" class="search-box" placeholder="Recherchez un produit...">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="electronique">Électronique</button>
+            <button class="filter-btn" data-filter="accessoires">Accessoires</button>
+            <button class="filter-btn" data-filter="maison">Maison</button>
+            <button class="filter-btn" data-filter="sport">Sport</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SmartMarket. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // === BASE DE DONNÉES DE PRODUITS ===
+        const products = [
+            { id: 1, name: 'iPhone 15 Pro', price: 650000, category: 'electronique', image: 'https://images.unsplash.com/photo-1592286927505-1def25115558?w=400&h=400&fit=crop', rating: 5 },
+            { id: 2, name: 'MacBook Pro 14"', price: 2500000, category: 'electronique', image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=400&fit=crop', rating: 5 },
+            { id: 3, name: 'AirPods Pro', price: 185000, category: 'accessoires', image: 'https://images.unsplash.com/photo-1606841838624-4a2607a10a9f?w=400&h=400&fit=crop', rating: 4 },
+            { id: 4, name: 'Apple Watch', price: 450000, category: 'electronique', image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop', rating: 5 },
+            { id: 5, name: 'iPad Air', price: 950000, category: 'electronique', image: 'https://images.unsplash.com/photo-1564466809058-bf4114d55352?w=400&h=400&fit=crop', rating: 4 },
+            { id: 6, name: 'Casque Logitech', price: 78000, category: 'accessoires', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop', rating: 4 },
+            { id: 7, name: 'Souris Wireless', price: 25000, category: 'accessoires', image: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&h=400&fit=crop', rating: 4 },
+            { id: 8, name: 'Clavier Mécanique', price: 95000, category: 'accessoires', image: 'https://images.unsplash.com/photo-1587829191301-72ec7a2d18fa?w=400&h=400&fit=crop', rating: 5 },
+            { id: 9, name: 'Lampe LED Smart', price: 35000, category: 'maison', image: 'https://images.unsplash.com/photo-1565636192335-14c95eb4b0d6?w=400&h=400&fit=crop', rating: 4 },
+            { id: 10, name: 'Téléviseur 55"', price: 450000, category: 'electronique', image: 'https://images.unsplash.com/photo-1593784991095-46dcec584c4b?w=400&h=400&fit=crop', rating: 5 },
+            { id: 11, name: 'Enceinte Bluetooth', price: 55000, category: 'accessoires', image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop', rating: 4 },
+            { id: 12, name: 'Caméra instax', price: 125000, category: 'electronique', image: 'https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=400&fit=crop', rating: 5 },
+            { id: 13, name: 'Drone DJI Mini', price: 480000, category: 'electronique', image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=400&fit=crop', rating: 5 },
+            { id: 14, name: 'Montre Connectée', price: 85000, category: 'accessoires', image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop', rating: 4 },
+            { id: 15, name: 'Batterie externe 50000mAh', price: 45000, category: 'accessoires', image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=400&fit=crop', rating: 4 },
+            { id: 16, name: 'Tapis Yoga Premium', price: 28000, category: 'sport', image: 'https://images.unsplash.com/photo-1518611505868-34f0eef2a239?w=400&h=400&fit=crop', rating: 4 },
+            { id: 17, name: 'Haltères adjustables', price: 150000, category: 'sport', image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=400&fit=crop', rating: 5 },
+            { id: 18, name: 'Chaussures de course', price: 89000, category: 'sport', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop', rating: 4 },
+            { id: 19, name: 'Sac de gym', price: 35000, category: 'sport', image: 'https://images.unsplash.com/photo-1599521577915-10d2b1aada49?w=400&h=400&fit=crop', rating: 4 },
+            { id: 20, name: 'Miroir Intelligent', price: 250000, category: 'maison', image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=400&fit=crop', rating: 5 }
+        ];
+
+        // === GESTION DE L'AFFICHAGE ===
+        let currentFilter = 'all';
+        let searchTerm = '';
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            const filtered = products.filter(product => {
+                const matchFilter = currentFilter === 'all' || product.category === currentFilter;
+                const matchSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchFilter && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; font-size: 1.2em; color: #666; padding: 40px;">Aucun produit trouvé.</p>';
+                return;
+            }
+
+            filtered.forEach(product => {
+                const stars = '⭐'.repeat(product.rating) + '☆'.repeat(5 - product.rating);
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x400?text=${encodeURIComponent(product.name)}'">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">Produit de qualité premium</p>
+                        <div class="product-rating">${stars}</div>
+                        <div class="product-price">${product.price.toLocaleString('fr-FR')} FCFA</div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
+                            🛒 Ajouter au panier
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // === FILTRAGE ===
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                renderProducts();
+            });
+        });
+
+        // === RECHERCHE ===
+        document.getElementById('searchBox').addEventListener('input', function() {
+            searchTerm = this.value;
+            renderProducts();
+        });
+
+        // === AJOUT AU PANIER ===
+        async function addToCart(id, name, price) {
+            try {
+                await AppDB.addCartItem({ nom: name, prix: price });
+                showNotification(`${name} ajouté au panier !`);
+            } catch (error) {
+                console.error('Erreur lors de l\'ajout au panier:', error);
+                showNotification('Erreur lors de l\'ajout au panier');
+            }
+        }
+
+        // === NOTIFICATION ===
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // === ANIMATIONS CSS ===
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // === INITIALISATION ===
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            console.log('Catalogue de produits chargé');
+        });
+    </script>
+</body>
+</html>
