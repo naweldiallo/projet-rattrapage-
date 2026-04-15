@@ -1,4 +1,4 @@
-// === PAGE À PROPOS - INTERACTIONS ===
+
 
 // Animation au scroll pour les cartes de valeurs
 function animateOnScroll() {
