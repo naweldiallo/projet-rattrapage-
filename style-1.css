@@ -1,0 +1,246 @@
+/* ===================================================
+   PUZZLE SUDOKU — style.css
+   Structure : CSS Grid 9x9 avec blocs 3x3
+   =================================================== */
+
+/* ===== RESET & BASE ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+/* ===== CONTENEUR PRINCIPAL ===== */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.sous-titre {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: -1rem;
+}
+
+/* ===================================================
+   GRILLE PRINCIPALE — CSS GRID 3x3 de BLOCS
+   C'est ici qu'on utilise CSS Grid pour les colonnes
+   et lignes du puzzle
+   =================================================== */
+.grid-outer {
+  display: grid;
+  grid-template-columns: repeat(3, auto); /* 3 colonnes de blocs */
+  grid-template-rows: repeat(3, auto);    /* 3 lignes de blocs */
+  gap: 4px;                               /* espace entre les blocs (bordure épaisse) */
+  border: 3px solid #1a1a1a;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #1a1a1a;             /* fond = couleur des bordures épaisses */
+}
+
+/* ===================================================
+   BLOC 3x3 — CSS GRID 3x3 de CELLULES
+   Chaque bloc contient 9 cellules en Grid
+   =================================================== */
+.bloc {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes de cellules */
+  grid-template-rows: repeat(3, 1fr);    /* 3 lignes de cellules */
+  gap: 1px;                              /* espace fin entre cellules */
+  background-color: #aaa;               /* fond = couleur des bordures fines */
+}
+
+/* ===================================================
+   CELLULE INDIVIDUELLE
+   =================================================== */
+.cell {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.1s;
+  position: relative;
+  user-select: none;
+}
+
+/* Cellule donnée (chiffre de départ, non modifiable) */
+.cell.donnee {
+  color: #1a1a1a;
+  cursor: default;
+}
+
+/* Cellule remplie par l'utilisateur */
+.cell.utilisateur {
+  color: #6e0f0f;
+}
+
+/* Cellule sélectionnée */
+.cell.selectionnee {
+  background-color: #e9f0c8;
+}
+
+/* Cellule avec erreur (chiffre en doublon) */
+.cell.erreur {
+  color: #c02b7d;
+}
+
+/* Cellule mise en évidence (même chiffre que la sélection) */
+.cell.surlignee {
+  background-color: #e8f8f0;
+}
+
+/* Survol des cellules vides */
+.cell:not(.donnee):hover {
+  background-color: #f0faf5;
+}
+
+/* ===================================================
+   NOTES (petits chiffres dans une cellule)
+   Elles utilisent aussi une mini CSS Grid 3x3
+   =================================================== */
+.notes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes pour les notes 1-9 */
+  grid-template-rows: repeat(3, 1fr);    /* 3 lignes pour les notes 1-9 */
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.notes span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 400;
+  color: #888;
+  line-height: 1;
+}
+
+/* ===== PAVÉ NUMÉRIQUE ===== */
+.numpad {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.num-btn {
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #1a1a1a;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.num-btn:hover {
+  background-color: #e8f8f0;
+  border-color: #0f6e56;
+  color: #0f6e56;
+}
+
+.num-btn.actif {
+  background-color: #0f6e56;
+  color: #fff;
+  border-color: #0f6e56;
+}
+
+/* Bouton effacer (plus large) */
+.num-btn.effacer {
+  width: auto;
+  padding: 0 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666;
+}
+
+/* ===== BOUTONS D'ACTION ===== */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.action-btn {
+  padding: 8px 20px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #444;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.action-btn:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+/* ===== MESSAGE DE STATUT ===== */
+.status {
+  font-size: 0.95rem;
+  color: #666;
+  min-height: 22px;
+  font-weight: 500;
+}
+
+.status.victoire {
+  color: #0f6e56;
+  font-size: 1.1rem;
+}
+
+.status.notes-actives {
+  color: #185fa5;
+}
+
+/* ===== RESPONSIVE MOBILE ===== */
+@media (max-width: 520px) {
+  .cell {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .num-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
